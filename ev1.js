@@ -7,11 +7,11 @@ $(document).ready(function () {
                 minlength: 3,
                 onlytext: true,
                  },
-            Age:{
+            age:{
                 required: true,
                 min: 18,
                 max: 25,
-                Age:true,
+                age:true,
             },
             phone: {
                 required: true,
@@ -27,8 +27,69 @@ $(document).ready(function () {
                 
             },
             gender: {
-                required: true
-            }
+                required: true,
+            },
+            sunday: {
+                required: true,
+            },
+            monday: {
+                required: true,
+            },
+            tuesday: {
+                required: true,
+            },
+            wednesday: {
+                required: true,
+            },
+            thursday: {
+                required: true,
+            },
+            friday: {
+                required: true,
+            }, 
+            saturday: {
+                required: true,
+            },
+            sun: {
+                required: true,
+                min: 0,
+                max: 23
+              },
+              mon: {
+                required: true,
+                min: 0,
+                max: 23
+              },
+              tues: {
+                required: true,
+                min: 0,
+                max: 23
+              },
+              wed: {
+                required: true,
+                min: 0,
+                max: 23
+              },
+              thurs: {
+                required: true,
+                min: 0,
+                max: 23
+              },
+              fri: {
+                required: true,
+                min: 0,
+                max: 23
+              },
+              sat: {
+                required: true,
+                min: 0,
+                max: 23
+              },
+            
+            config : {
+                required:true,
+            },
+
         },
         
     
@@ -36,9 +97,9 @@ $(document).ready(function () {
             name: {
                 required: "Enter Name",
                 minlength: "Name should be atleast 3 Characters",
-                onlytext:"Name should be only text."
+                onlytext:"Name should be only text.",
             },
-            Age: {
+            age: {
                 required:"Enter an age",
                 min:"minimum required age is 18.",
                 max:"maximum required age is 25.",
@@ -57,6 +118,51 @@ $(document).ready(function () {
             gender: {
                 required: "Please select a gender",
             },
+            sun: {
+                required: "Please select time.",
+              },
+              mon: {
+                required: "Please select time.",
+              },
+              tues: {
+                required: "Please select time.",
+              },
+              wed: {
+                required: "Please select time.",
+              },
+              thurs: {
+                required: "Please select time.",
+              },
+              fri: {
+                required: "Please select time.",
+              },
+              sat: {
+                required: "Please select time.",
+              },
+            config: {
+                required: "Please select checkbox",
+            },
+            sunday: {
+                required: "Please select the checkbox",
+            },
+            monday: {
+                required: "Please select the checkbox",
+            },
+            tuesday: {
+                required: "Please select the checkbox",
+            },
+            wednesday: {
+                required: "Please select the checkbox",
+            },
+            thursday: {
+                required: "Please select the checkbox",
+            },
+            friday: {
+                required: "Please select the checkbox",
+            },
+            saturday: {
+                required: "Please select the checkbox",
+            },
         },
         // errorPlacement: function (error, element) {
         //   if (element.is(":radio")) {
@@ -69,6 +175,10 @@ $(document).ready(function () {
         
       }); 
     });
+    $('config').on('change', function () {
+        if (!$(this).is(':checked')) $(this).closest('#sunday').find('select').val('');
+    
+      });
     $.validator.addMethod(
       "onlytext",
       function (value) {
@@ -81,9 +191,7 @@ $(document).ready(function () {
       "age",
       function (value) {
         return /[0-9]$/.test(value);
-        if (!age >= 18 && !age <= 25) {
-          return true;
-        }
+       
       },
       "enter valid age"
     );
@@ -111,6 +219,15 @@ $(document).ready(function () {
     });
     
   function enable_cb() {
+    if (!this.checked) {
+        document.getElementById("sunday").checked=false
+        document.getElementById("monday").checked=false
+        document.getElementById("tuesday").checked=false
+        document.getElementById("wednesday").checked=false
+        document.getElementById("thursday").checked=false
+        document.getElementById("friday").checked=false
+        document.getElementById("saturday").checked=false
+    }
       if (this.checked) {
           $("#sunday").removeAttr("disabled");
           $("#monday").removeAttr("disabled");
@@ -292,13 +409,13 @@ function disable_cb7(){
         
        
         let gender = $("input[name='gender']:checked").val();
-        let sunday = $('#pickupTime1').val();
-        let monday = $('#pickupTime2').val();
-        let tuesday = $('#pickupTime3').val();
-        let wednesday = $('#pickupTime4').val();
-        let thursday = $('#pickupTime5').val();
-        let friday = $('#pickupTime6').val();
-        let saturday = $('#pickupTime7').val();
+        let sunday = $('#sun').val();
+        let monday = $('#mon').val();
+        let tuesday = $('#tues').val();
+        let wednesday = $('#wed').val();
+        let thursday = $('#thurs').val();
+        let friday = $('#fri').val();
+        let saturday = $('#sat').val();
 
         if (
             $('#name').valid()  &&
@@ -306,6 +423,19 @@ function disable_cb7(){
             $('#email').valid() &&
             
             $('#phone').valid() &&
+            $('#sun').valid() &&
+            $('#mon').valid() &&
+            $('#tues').valid() &&
+            $('#wed').valid() &&
+            $('#thurs').valid() &&
+            $('#fri').valid() &&
+            $('#sat').valid() &&
+            $('#monday').valid() &&
+            $('#tuesday').valid() &&
+            $('#wednesday').valid() &&
+            $('#thursday').valid() &&
+            $('#friday').valid() &&
+            $('#saturday').valid() &&
             
            
             $("input[name='gender']:checked").val() != undefined
@@ -331,7 +461,7 @@ function disable_cb7(){
                 localStorage.setItem('saturday',$('#sat').val());      
 
 
-                location.href = '../Evaluation Test/table.html'
+                window.open( '../Evaluation Test/table.html')
                     
             }
             

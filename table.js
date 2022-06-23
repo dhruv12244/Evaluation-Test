@@ -31,16 +31,9 @@ let sunday=  localStorage.getItem('sunday',$('#sun').val());
     "</td><td>" + thursday +
     "</td><td>" + friday +
     "</td><td>" + saturday +
-    "</td><td><a href='javascript:void(0);' class='rem'>Remove</a></td>" +
-    "<td><a href='' class='edit'>Edit</a></td></tr>");
+    "</td></tr>");
 
 
-    $(document).on('click','.rem',function(){
-      $(this).parent().parent().remove();});
-
-    $(document).on('click','.edit',function(event){
-      event.preventDefault();
-      var url=window.history.go(-1);
-      $('.edit').attribute('href',url);});
+    
 
 }   
