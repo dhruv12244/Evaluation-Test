@@ -91,7 +91,14 @@ $(document).ready(function () {
             },
 
         },
-        
+        errorPlacement: function (error, element) {
+            if (element.attr("name") == "config"){
+               error.insertAfter('#here')
+           }
+           else{
+             error.insertAfter(element);
+           }
+       },
     
         messages : {
             name: {
@@ -182,7 +189,7 @@ $(document).ready(function () {
     $.validator.addMethod(
       "onlytext",
       function (value) {
-        return /^[a-zA-Z]*$/.test(value);
+        return /^[a-z A-Z]*$/.test(value);
       },
       "enter a valid input"
     );
@@ -212,7 +219,7 @@ $(document).ready(function () {
     );
 
     $(function() {
-      enable_cb();   // this function will enable all the days
+      enable_cb();   
       $("#config").click(enable_cb);
       disable_cb();
       $('#config').click(disable_cb);
@@ -227,6 +234,13 @@ $(document).ready(function () {
         document.getElementById("thursday").checked=false
         document.getElementById("friday").checked=false
         document.getElementById("saturday").checked=false
+        $("#sun")[0].value="None";
+      $("#mon")[0].value="None";
+      $("#tues")[0].value="None";
+      $("#wed")[0].value="None";
+      $("#thurs")[0].value="None";
+      $("#fri")[0].value="None";
+      $("#sat")[0].value="None";
     }
       if (this.checked) {
           $("#sunday").removeAttr("disabled");
@@ -260,9 +274,9 @@ $(document).ready(function () {
 
 
 
-  //   now enable each select time based on the day is cheked or not
+  
   $(function(){
-      enable_cb1();  // this function will enable sunday pickup time
+      enable_cb1();  
       $('#sunday').click(enable_cb1);
       disable_cb1();
       $("#sunday").click(disable_cb1)
@@ -274,13 +288,14 @@ $(document).ready(function () {
 }
 function disable_cb1(){
     if(!this.checked){
+        $('#sun').val('None').change()
         $('#sun').attr('disabled',true);
     }
 }
   
 
   $(function(){
-      enable_cb2();  // this function will enable sunday pickup time
+      enable_cb2(); 
       $('#monday').click(enable_cb2);
       disable_cb2();
       $("#monday").click(disable_cb2)
@@ -292,6 +307,7 @@ function disable_cb1(){
 }
 function disable_cb2(){
     if(!this.checked){
+        $('#mon').val('None').change()
         $('#mon').attr('disabled',true);
     }
 }
@@ -299,7 +315,7 @@ function disable_cb2(){
   
 
   $(function(){
-      enable_cb3();  // this function will enable sunday pickup time
+      enable_cb3();  
       $('#tuesday').click(enable_cb3);
       disable_cb1();
       $("#tuesday").click(disable_cb3)
@@ -311,13 +327,14 @@ function disable_cb2(){
 }
 function disable_cb3(){
     if(!this.checked){
+        $('#tues').val('None').change()
         $('#tues').attr('disabled',true);
     }
 }
   
 
   $(function(){
-      enable_cb4();  // this function will enable sunday pickup time
+      enable_cb4(); 
       $('#wednesday').click(enable_cb4);
       disable_cb4();
       $("#wednesday").click(disable_cb4)
@@ -330,12 +347,13 @@ function disable_cb3(){
 }
 function disable_cb4(){
     if(!this.checked){
+        $('#wed').val('None').change()
         $('#wed').attr('disabled',true);
     }
 }
 
   $(function(){
-      enable_cb5();  // this function will enable sunday pickup time
+      enable_cb5(); 
       $('#thursday').click(enable_cb5);
       disable_cb1();
       $("#thursday").click(disable_cb5)
@@ -347,6 +365,7 @@ function disable_cb4(){
 }
 function disable_cb5(){
     if(!this.checked){
+        $('#thurs').val('None').change()
         $('#thurs').attr('disabled',true);
     }
 }
@@ -355,7 +374,7 @@ function disable_cb5(){
   
   
   $(function(){
-      enable_cb6();  // this function will enable sunday pickup time
+      enable_cb6(); 
       $('#friday').click(enable_cb6);
       disable_cb6();
       $("#saturday").click(disable_cb6)
@@ -367,6 +386,7 @@ function disable_cb5(){
 }
 function disable_cb6(){
     if(!this.checked){
+        $('#fri').val('None').change()
         $('#fri').attr('disabled',true);
     }
 }
@@ -374,7 +394,7 @@ function disable_cb6(){
   
 
   $(function(){
-      enable_cb7();  // this function will enable sunday pickup time
+      enable_cb7();  
       $('#saturday').click(enable_cb7);
       disable_cb7();
       $("#saturday").click(disable_cb7)
@@ -386,6 +406,7 @@ function disable_cb6(){
 }
 function disable_cb7(){
     if(!this.checked){
+        $('#sat').val('None').change()
         $('#sat').attr('disabled',true);
     }
 }
